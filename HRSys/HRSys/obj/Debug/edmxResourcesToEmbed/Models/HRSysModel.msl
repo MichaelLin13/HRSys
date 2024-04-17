@@ -1,0 +1,31 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="HRSysModelStoreContainer" CdmEntityContainer="HRSysModelContainer">
+    <EntitySetMapping Name="USRFORM">
+      <EntityTypeMapping TypeName="IsTypeOf(HRSysModel.USRFORM)">
+        <MappingFragment StoreEntitySet="USRFORMS">
+          <ScalarProperty Name="UsrId" ColumnName="UsrId" />
+          <ScalarProperty Name="UsrPSW" ColumnName="UsrPSW" />
+          <ScalarProperty Name="Employed" ColumnName="Employed" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="HolidayPublic">
+      <EntityTypeMapping TypeName="IsTypeOf(HRSysModel.HolidayPublic)">
+        <MappingFragment StoreEntitySet="HolidayPublics">
+          <ScalarProperty Name="HolidayPublicId" ColumnName="HolidayPublicId" />
+          <ScalarProperty Name="PDate" ColumnName="PDate" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="HolidaySelf">
+      <EntityTypeMapping TypeName="IsTypeOf(HRSysModel.HolidaySelf)">
+        <MappingFragment StoreEntitySet="HolidaySelfs">
+          <ScalarProperty Name="HolidaySelfId" ColumnName="HolidaySelfId" />
+          <ScalarProperty Name="SDate" ColumnName="SDate" />
+          <ScalarProperty Name="UsrId" ColumnName="UsrId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>

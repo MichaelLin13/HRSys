@@ -1,0 +1,53 @@
+﻿@model IEnumerable<HRSys.Models.USRFORM>
+
+@{
+    ViewBag.Title = "Index";
+    if (TempData["ErrorMessage"] != null)
+    {
+        <script type="text/javascript">
+        var message = @Html.Raw(Json.Encode(TempData["ErrorMessage"]));
+        alert(message);
+        </script>
+    }
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("新增使用者", "Create", "USRFORM")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.UsrId)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.UsrPSW)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Employed)
+        </th>
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.UsrId)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.UsrPSW)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Employed)
+            </td>
+            <td>
+                @Html.ActionLink("編輯", "Edit", new { usrid = item.UsrId }, new { @class = "btn btn-default" }) |                
+                @Html.ActionLink("請假", "Index", "Holiday", new { usrid = item.UsrId }, new { @class = "btn btn-default" }) |
+                @Html.ActionLink("刪除", "Delete", new { usrid = item.UsrId }, new { @class = "btn btn-default", @onclick = "return confirm('確定刪除?')" })
+            </td>
+        </tr>
+    }
+
+</table>

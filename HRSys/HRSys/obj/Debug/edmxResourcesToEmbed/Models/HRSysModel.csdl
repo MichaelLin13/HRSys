@@ -1,0 +1,31 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema xmlns="http://schemas.microsoft.com/ado/2009/11/edm" xmlns:cg="http://schemas.microsoft.com/ado/2006/04/codegeneration" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" Namespace="HRSysModel" Alias="Self" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" annotation:UseStrongSpatialTypes="false">
+  <EntityContainer Name="HRSysModelContainer" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="USRFORM" EntityType="HRSysModel.USRFORM" />
+    <EntitySet Name="HolidayPublic" EntityType="HRSysModel.HolidayPublic" />
+    <EntitySet Name="HolidaySelf" EntityType="HRSysModel.HolidaySelf" />
+  </EntityContainer>
+  <EntityType Name="USRFORM">
+    <Key>
+      <PropertyRef Name="UsrId" />
+    </Key>
+    <Property Name="UsrId" Type="String" Nullable="false" annotation:StoreGeneratedPattern="None" MaxLength="10" />
+    <Property Name="UsrPSW" Type="String" Nullable="false" MaxLength="10" />
+    <Property Name="Employed" Type="Boolean" Nullable="false" />
+  </EntityType>
+  <EntityType Name="HolidayPublic">
+    <Key>
+      <PropertyRef Name="HolidayPublicId" />
+    </Key>
+    <Property Name="HolidayPublicId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="PDate" Type="DateTime" Nullable="false" />
+  </EntityType>
+  <EntityType Name="HolidaySelf">
+    <Key>
+      <PropertyRef Name="HolidaySelfId" />
+    </Key>
+    <Property Name="HolidaySelfId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="SDate" Type="DateTime" Nullable="false" />
+    <Property Name="UsrId" Type="String" Nullable="false" MaxLength="10" />
+  </EntityType>
+</Schema>

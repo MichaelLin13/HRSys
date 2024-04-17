@@ -1,0 +1,35 @@
+﻿@model IEnumerable<HRSys.Models.HolidaySelf>
+
+@{
+    ViewBag.Title = "Delete_List";
+}
+
+<h2>取消請假</h2>
+
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.SDate)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.UsrId)
+        </th>
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.SDate)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.UsrId)
+            </td>
+            <td>
+                @Html.ActionLink("刪除", "Delete", new { holiday_selfid = item.HolidaySelfId }, new { @onclick = "return confirm('確定刪除?')" })
+            </td>
+        </tr>
+    }
+</table>
+@Html.ActionLink("返回", "Index", "Holiday", new { usrid = @ViewBag.usrid }, new { @class = "btn btn-default" })

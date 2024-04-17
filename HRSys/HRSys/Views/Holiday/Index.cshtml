@@ -1,0 +1,92 @@
+﻿@{
+    ViewBag.Title = "月曆";
+    var culture = System.Threading.Thread.CurrentThread.CurrentCulture;
+    if (TempData["ErrorMessage"] != null)
+    {
+        <script type="text/javascript">
+        var message = @Html.Raw(Json.Encode(TempData["ErrorMessage"]));
+        alert(message);
+        </script>
+    }
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>@ViewBag.Title</title>
+    <style>
+        table {
+            border-collapse: collapse;
+            width: 100%;
+        }
+
+        th, td {
+            border: 1px solid #dddddd;
+            text-align: center;
+            padding: 8px;
+        }
+
+        th {
+            background-color: #f2f2f2;
+        }
+
+        .weekend {
+            background-color: pink;
+        }
+    </style>
+</head>
+<body>
+    <br />
+    @Html.ActionLink("請假", "Create", "Holiday", new { usrid = @ViewBag.usrid }, new { @class = "btn btn-default" })
+    @Html.ActionLink("取消請假", "Delete_List", "Holiday", new { usrid = @ViewBag.usrid }, new { @class = "btn btn-default" })
+    @foreach (var monthAndDates in ViewBag.WeekendDatesByMonth)
+    {
+        int month = monthAndDates.Key;
+        List<DateTime> weekendDates = monthAndDates.Value;
+
+        <h2>@culture.DateTimeFormat.GetMonthName(month)</h2>
+        <table>
+            <tr>
+                <th>Sun</th>
+                <th>Mon</th>
+                <th>Tue</th>
+                <th>Wed</th>
+                <th>Thu</th>
+                <th>Fri</th>
+                <th>Sat</th>
+            </tr>
+            @{
+                DateTime firstDayOfMonth = new DateTime(2024, month, 1);
+                int daysInMonth = DateTime.DaysInMonth(2024, month);
+                int currentDay = 1;
+
+                for (int i = 1; i <= 6; i++)
+                {
+                    <tr>
+                        @for (int j = 1; j <= 7; j++)
+                        {
+                            if ((i == 1 && j < (int)firstDayOfMonth.DayOfWeek + 1) || currentDay > daysInMonth)
+                            {
+                                <td></td>
+                            }
+                            else
+                            {
+                                DateTime currentDate = new DateTime(2024, month, currentDay);
+
+                                bool isWeekend = (/*j == 1 || j == 7 ||*/ weekendDates.Contains(currentDate));
+
+                                string cellClass = isWeekend ? "weekend" : "";
+                                <td class="@cellClass">@currentDay</td>
+                                currentDay++;
+                            }
+                        }
+                    </tr>
+                }
+            }
+        </table>
+    }    
+    @Html.ActionLink("返回", "Index", "USRFORM", new {  }, new { @class = "btn btn-default" })
+</body>
+</html>

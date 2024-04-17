@@ -1,0 +1,31 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="HRSysModel.Store" Alias="Self" Provider="System.Data.SqlClient" ProviderManifestToken="2008" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityContainer Name="HRSysModelStoreContainer">
+    <EntitySet Name="USRFORMS" EntityType="HRSysModel.Store.USRFORMS" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="HolidayPublics" EntityType="HRSysModel.Store.HolidayPublics" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="HolidaySelfs" EntityType="HRSysModel.Store.HolidaySelfs" store:Type="Tables" Schema="dbo" />
+  </EntityContainer>
+  <EntityType Name="USRFORMS">
+    <Key>
+      <PropertyRef Name="UsrId" />
+    </Key>
+    <Property Name="UsrId" Type="nvarchar" Nullable="false" MaxLength="10" />
+    <Property Name="UsrPSW" Type="nvarchar" Nullable="false" MaxLength="10" />
+    <Property Name="Employed" Type="bit" Nullable="false" />
+  </EntityType>
+  <EntityType Name="HolidayPublics">
+    <Key>
+      <PropertyRef Name="HolidayPublicId" />
+    </Key>
+    <Property Name="HolidayPublicId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="PDate" Type="datetime" Nullable="false" />
+  </EntityType>
+  <EntityType Name="HolidaySelfs">
+    <Key>
+      <PropertyRef Name="HolidaySelfId" />
+    </Key>
+    <Property Name="HolidaySelfId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="SDate" Type="datetime" Nullable="false" />
+    <Property Name="UsrId" Type="nvarchar" Nullable="false" MaxLength="10" />
+  </EntityType>
+</Schema>
